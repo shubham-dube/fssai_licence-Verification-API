@@ -51,7 +51,7 @@ This API fetches all the details of given fssai licence number with only licence
 
 **Method:** `POST`
 
-**Description:** `This Endpoint takes only the Mempership Number as Payload and return the full data of that Chatered Accountant holding that Membership Number.`
+**Description:** `This Endpoint takes only the FSSAI Licence Number and give results related to that licence number in array..`
 
 **Request Body:**
 ```json

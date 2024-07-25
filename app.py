@@ -6,7 +6,7 @@ app = Flask(__name__)
 url = "https://foscos.fssai.gov.in/gateway/commonauth/commonapi/getsearchapplicationdetails/1"
 
 @app.route("/api/v1/get_fssai_details", methods=["POST"])
-def getCADetails():
+def get_fssai_details():
     try:
         licenceNumber = request.json.get("licenceNumber")
         session = requests.Session()
