@@ -1,13 +1,16 @@
 from flask import Flask, jsonify, Response, make_response, request
 import requests
 
-app = Flask(__name__)
+from asgiref.wsgi import WsgiToAsgi
 
-url = "https://foscos.fssai.gov.in/gateway/commonauth/commonapi/getsearchapplicationdetails/1"
+app = Flask(__name__)
+asgi_app = WsgiToAsgi(app)
+
 
 @app.route("/api/v1/get_fssai_details", methods=["POST"])
 def get_fssai_details():
     try:
+        url = "https://foscos.fssai.gov.in/gateway/commonauth/commonapi/getsearchapplicationdetails/1"
         licenceNumber = request.json.get("licenceNumber")
         session = requests.Session()
 
@@ -26,4 +29,6 @@ def get_fssai_details():
         return jsonify({"error": "Error in fetching fssai licence Details"})
 
 if __name__ == "__main__":
-    app.run()
+    import uvicorn
+    uvicorn.run(asgi_app, host='0.0.0.0', port=5001)
+    
